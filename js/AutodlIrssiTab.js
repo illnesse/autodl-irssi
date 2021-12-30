@@ -83,6 +83,8 @@ function AutodlIrssiTab(dialogManager, plugin)
 	plugin.attachPageToTabs($(
 		'<div id="autodl-irssi-tab">' +
 			'<div id="autodl-log-buttons">' +
+				'<input type="button" id="autodl-filter-button" class="Button" value="Filter" title="Filter" />' +
+				'<input type="button" id="autodl-preferences-button" class="Button" value="Preferences" title="Preferences" />' +
 				'<input type="button" id="autodl-log-clear-button" class="Button" value="' + theUILang.ClearButton + '" title="' + theUILang.autodlClear2  + '" />' +
 				'<input type="button" id="autodl-log-update-button" class="Button" value="' + theUILang.autodlUpdate1 + '" title="' + theUILang.autodlUpdate2  + '" />' +
 				'<input type="button" id="autodl-log-whatsnew-button" class="Button" value="' + theUILang.autodlWhatsNew1 + '" title="' + theUILang.autodlWhatsNew2  + '" />' +
@@ -132,6 +134,17 @@ function AutodlIrssiTab(dialogManager, plugin)
 	$("#autodl-log-reload-trackers-button").on('click', function()
 	{
 		this_._sendAutodlCommand("reloadtrackers");
+	});
+
+
+
+	$("#autodl-filter-trackers-button").on('click', function()
+	{
+		this_.dialogManager.toggleDialog("filters");
+	});
+	$("#autodl-preferences-trackers-button").on('click', function()
+	{
+		this_.dialogManager.toggleDialog("preferences");
 	});
 
 	this._initResizeBottom();

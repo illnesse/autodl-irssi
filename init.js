@@ -168,17 +168,25 @@ function(e)
 	var this_ = this;
 
 	theContextMenu.clear();
-	theContextMenu.add([theUILang.autodlFilters2, function() { this_.dialogManager.toggleDialog("filters"); }]);
-	theContextMenu.add([theUILang.autodlIrcServers2, function() { this_.dialogManager.toggleDialog("ircsrvs"); }]);
-	theContextMenu.add([theUILang.autodlTrackers2, function() { this_.dialogManager.toggleDialog("trackers"); }]);
-	theContextMenu.add([theUILang.autodlPreferences2, function() { this_.dialogManager.toggleDialog("preferences"); }]);
+	theContextMenu.add([theUILang.autodlIrcServers2, 'autodl_menu_ircsrvs()']);
+	theContextMenu.add([theUILang.autodlTrackers2, 'autodl_menu_trackers()']);
 	theContextMenu.add([CMENU_SEP]);
-	theContextMenu.add([theUILang.autodlHelp2, function() { this_.dialogManager.toggleDialog("help"); }]);
+	theContextMenu.add([theUILang.autodlHelp2, 'autodl_menu_help()']);
 
 	var offset = $("#autodl-tb").offset();
 	var x = offset.left - 5;
 	var y = offset.top + 5 + $("#autodl-tb").height();
 	theContextMenu.show(x, y);
+}
+
+autodl_menu_ircsrvs = function() {
+	this.dialogManager.toggleDialog("ircsrvs");
+}
+autodl_menu_trackers = function() {
+	this.dialogManager.toggleDialog("trackers");
+}
+autodl_menu_help = function() {
+	this.dialogManager.toggleDialog("help");
 }
 
 if (plugin.enabled)
