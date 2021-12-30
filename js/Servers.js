@@ -72,7 +72,7 @@ function(multiSelectDlgBox, okHandler)
 	this.trackerListBox = new ListBox("autodl-servers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-servers-close-button").click(function(e) { okHandler() });
+	$("#autodl-servers-close-button").on('click', function(e) { okHandler() });
 }
 
 Servers.prototype.onOkClicked =

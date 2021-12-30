@@ -47,7 +47,7 @@ function(multiSelectDlgBox, okHandler)
 	this.trackerListBox = new ListBox("autodl-trackers-list");
 	this.trackerListBox.onSelected = function(oldObj, newObj) { this_._onTrackerSelected(oldObj, newObj); }
 
-	$("#autodl-trackers-ok-button").click(function(e) { okHandler() });
+	$("#autodl-trackers-ok-button").on('click', function(e) { okHandler() });
 }
 
 Trackers.prototype._getSortedTrackerInfos =
@@ -280,11 +280,11 @@ function(setting, trackerInfo)
 		if (setting.pasteRegex && setting.pasteGroup)
 		{
 			var this_ = this;
-			textbox.change(function(e)
+			textbox.on('change', function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
-			textbox.keyup(function(e)
+			textbox.on('keyup', function(e)
 			{
 				this_._onPaste(trackerInfo, setting.pasteGroup, textbox);
 			});
@@ -348,7 +348,7 @@ function(trackerInfo, pasteGroup, textboxElem)
 	var names = pasteGroup.split(",");
 	for (var i = 0; i < names.length; i++)
 	{
-		var name = $.trim(names[i]);
+		var name = String.prototype.trim(names[i]);
 		var setting = this._findSetting(trackerInfo, name);
 		if (!setting)
 			continue;

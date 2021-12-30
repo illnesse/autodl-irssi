@@ -149,11 +149,11 @@ function MenuButton(buttonId, textboxId, strings, onlyAppendValues, sortIt)
 	}
 
 	var this_ = this;
-	$(this.buttonElem).click(function(e)
+	$(this.buttonElem).on('click', function(e)
 	{
 		this_._onClick(e);
 	});
-	$(this.buttonElem).mouseup(function(e)
+	$(this.buttonElem).on('mouseup', function(e)
 	{
 		// Prevent ruTorrent from immediately closing the popup menu!
 		e.stopPropagation();
@@ -171,7 +171,7 @@ function()
 	var ary = $(this.textboxElem).val().split(",");
 	for (var i = 0; i < ary.length; i++)
 	{
-		var name = $.trim(ary[i]).toLowerCase();
+		var name = String.prototype.trim(ary[i]).toLowerCase();
 		for (var j = 0; j < this.strings.length; j++)
 		{
 			var strings = this.strings[j];
@@ -270,7 +270,7 @@ function SitesButton(buttonId, textboxId, multiSelectDlgBox)
 	this.multiSelectDlgBox = multiSelectDlgBox;
 
 	var this_ = this;
-	$(this.buttonElem).click(function(e)
+	$(this.buttonElem).on('click', function(e)
 	{
 		this_._onClick(e);
 	});
@@ -713,19 +713,19 @@ function(multiSelectDlgBox, okHandler)
 
 	var this_ = this;
 
-	$("#autodl-filters-new-button").click(function(e)
+	$("#autodl-filters-new-button").on('click', function(e)
 	{
 		this_._onClickNew();
 	});
-	$("#autodl-filters-remove-button").click(function(e)
+	$("#autodl-filters-remove-button").on('click', function(e)
 	{
 		this_._onClickRemove();
 	});
-	$("#autodl-filters-copy-button").click(function(e)
+	$("#autodl-filters-copy-button").on('click', function(e)
 	{
 		this_._onClickCopy();
 	});
-	$("#autodl-filters-name").keyup(function(e)
+	$("#autodl-filters-name").on('keyup', function(e)
 	{
 		this_._onFilterNameModified();
 	});
@@ -778,7 +778,7 @@ function(multiSelectDlgBox, okHandler)
 
 	this.uploadMethod = new UploadMethod("autodl-filters", "autodl-filters-contents-upload");
 
-	$("#autodl-filters-ok-button").click(function(e) { okHandler() });
+	$("#autodl-filters-ok-button").on('click', function(e) { okHandler() });
 }
 
 Filters.prototype.onBeforeShow =
@@ -953,7 +953,7 @@ function()
 	var obj = this._addFilterSection(new ConfigSection(null, "filter", ""));
 	this.filterListBox.selectData(obj);
 	this.tabs.selectByIndex(0);
-	$("#autodl-filters-name").focus();
+	$("#autodl-filters-name").trigger('focus');
 }
 
 Filters.prototype._onClickRemove =
@@ -979,7 +979,7 @@ function()
 	var newObj = this._addFilterSection(oldObj.section.copy());
 	this.filterListBox.selectData(newObj);
 	this.tabs.selectByIndex(0);
-	$("#autodl-filters-name").focus();
+	$("#autodl-filters-name").trigger('focus');
 }
 
 Filters.prototype._onFilterNameModified =

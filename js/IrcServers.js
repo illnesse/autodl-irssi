@@ -132,31 +132,31 @@ function(multiSelectDlgBox, okHandler)
 		new DialogOptionText("autodl-ircsrvs-httpdata", "invite-http-data", "")
 	];
 
-	$("#autodl-ircsrvs-new-button").click(function()
+	$("#autodl-ircsrvs-new-button").on('click', function()
 	{
 		this_._onNewServerClicked();
 	});
-	$("#autodl-ircsrvs-remove-button").click(function()
+	$("#autodl-ircsrvs-remove-button").on('click', function()
 	{
 		this_._onRemoveServerClicked();
 	});
-	$("#autodl-ircsrvs-announce-channels-button").click(function()
+	$("#autodl-ircsrvs-announce-channels-button").on('click', function()
 	{
 		theDialogManager.show("autodl-servers");
 	});
-	$("#autodl-ircsrvs-new-channel-button").click(function()
+	$("#autodl-ircsrvs-new-channel-button").on('click', function()
 	{
 		this_._onNewChannelClicked();
 	});
-	$("#autodl-ircsrvs-remove-channel-button").click(function()
+	$("#autodl-ircsrvs-remove-channel-button").on('click', function()
 	{
 		this_._onRemoveChannelClicked();
 	});
-	$("#autodl-ircsrvs-server").keyup(function(e)
+	$("#autodl-ircsrvs-server").on('keyup', function(e)
 	{
 		this_._onServerNameModified();
 	});
-	$("#autodl-ircsrvs-channel").keyup(function(e)
+	$("#autodl-ircsrvs-channel").on('keyup', function(e)
 	{
 		this_._onChannelNameModified();
 	});
@@ -170,7 +170,7 @@ function(multiSelectDlgBox, okHandler)
 		this_.onChannelsDropDownChange(oldValue, newValue);
 	};
 
-	$("#autodl-ircsrvs-ok-button").click(function(e) { okHandler() });
+	$("#autodl-ircsrvs-ok-button").on('click', function(e) { okHandler() });
 }
 
 IrcServers.prototype.onBeforeShow =
@@ -406,7 +406,7 @@ function()
 	var obj = this._addServer(serverInfo);
 	this.serversListBox.selectData(obj);
 
-	$("#autodl-ircsrvs-server").focus();
+	$("#autodl-ircsrvs-server").trigger('focus');
 }
 
 IrcServers.prototype._onRemoveServerClicked =
@@ -431,7 +431,7 @@ function()
 	this.activeServerInfo.channels.push(channelSection);
 	this.channelsDropdown.add(index, this._fixName(channelSection.getOption("name", "", "text").getValue()));
 	this.channelsDropdown.select(index);
-	$("#autodl-ircsrvs-channel").focus();
+	$("#autodl-ircsrvs-channel").trigger('focus');
 }
 
 IrcServers.prototype._onRemoveChannelClicked =

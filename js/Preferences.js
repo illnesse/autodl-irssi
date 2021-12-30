@@ -33,7 +33,7 @@ function SitesButton(buttonId, textboxId, multiSelectDlgBox)
 	this.multiSelectDlgBox = multiSelectDlgBox;
 
 	var this_ = this;
-	$(this.buttonElem).click(function(e)
+	$(this.buttonElem).on('click', function(e)
 	{
 		this_._onClick(e);
 	});
@@ -285,8 +285,8 @@ function(multiSelectDlgBox, okHandler)
 
 	this.tabs = new Tabs();
 	this.tabs.add("autodl-prefs-tab-general", "autodl-prefs-contents-general");
-	this.tabs.add("autodl-prefs-tab-upload", "autodl-prefs-contents-upload");
-	this.tabs.add("autodl-prefs-tab-webui", "autodl-prefs-contents-webui");
+	// this.tabs.add("autodl-prefs-tab-upload", "autodl-prefs-contents-upload");
+	// this.tabs.add("autodl-prefs-tab-webui", "autodl-prefs-contents-webui");
 	this.tabs.add("autodl-prefs-tab-ftp", "autodl-prefs-contents-ftp");
 	this.tabs.add("autodl-prefs-tab-irc", "autodl-prefs-contents-irc");
 	this.tabs.add("autodl-prefs-tab-programs", "autodl-prefs-contents-programs");
@@ -297,11 +297,11 @@ function(multiSelectDlgBox, okHandler)
 	this.dropDownBox.add("ask", theUILang.autodlAsk);
 	this.dropDownBox.add("disabled", theUILang.autodlDontCheckForUpdates);
 
-	this.uploadMethod = new UploadMethod("autodl-preferences", "autodl-prefs-contents-upload", true);
+	// this.uploadMethod = new UploadMethod("autodl-preferences", "autodl-prefs-contents-upload", true);
 
 	this.advancedOutputSitesButton = new SitesButton("autodl-advanced-output-sites-button", "autodl-advanced-output-sites", multiSelectDlgBox);
 
-	$("#autodl-prefs-ok-button").click(function(e) { okHandler() });
+	$("#autodl-prefs-ok-button").on('click', function(e) { okHandler() });
 }
 
 Preferences.prototype.onBeforeShow =

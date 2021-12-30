@@ -50,7 +50,7 @@ function MultiSelect()
 		this_.onAfterHide();
 	});
 
-	$("#autodl-multiselect-ok-button").click(function(e)
+	$("#autodl-multiselect-ok-button").on('click', function(e)
 	{
 		this_._onClickOk();
 	});

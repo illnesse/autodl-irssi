@@ -46,8 +46,8 @@ function ConfigOption(id, name, value, defaultValue, optionType)
 {
 	this.type = "option";
 	this.id = id;
-	this.name = $.trim(name);
-	this.value = $.trim(value);
+	this.name = String.prototype.trim(name);
+	this.value = String.prototype.trim(value);
 	this.defaultValue = defaultValue;
 	this.optionType = optionType;
 }
@@ -137,8 +137,8 @@ function()
 function ConfigSection(id, type, name)
 {
 	this.id = id;
-	this.type = $.trim(type);
-	this.name = $.trim(name);
+	this.type = String.prototype.trim(type);
+	this.name = String.prototype.trim(name);
 	this.nextId = 0;
 	this.lines = {};
 	this.printEmpty = true;
@@ -194,7 +194,7 @@ function(line)
 ConfigSection.prototype.getOption =
 function(name, defaultValue, type)
 {
-	var hash = $.trim(name);
+	var hash = String.prototype.trim(name);
 	var option = this.lines[hash];
 	if (!option)
 		this.lines[hash] = option = new ConfigOption(this.nextId++, name, defaultValue);
@@ -247,7 +247,7 @@ function(contents)
 	var lines = contents.split("\n");
 	for (var i = 0; i < lines.length; i++)
 	{
-		var line = $.trim(lines[i]);
+		var line = String.prototype.trim(lines[i]);
 		if (line === "")
 			continue;
 
@@ -258,8 +258,8 @@ function(contents)
 		}
 		else if (ary = line.match(/^\[\s*([\w\-]+)\s*(?:([^\]]+))?\s*]$/))
 		{
-			var type = $.trim(ary[1]).toLowerCase();
-			var name = $.trim(ary[2]);
+			var type = String.prototype.trim(ary[1]).toLowerCase();
+			var name = String.prototype.trim(ary[2]);
 
 			section = this.getSection(type, name);
 		}
@@ -269,8 +269,8 @@ function(contents)
 				error("Missing a [section]");
 			else
 			{
-				var option = $.trim(ary[1]).toLowerCase();
-				var value = $.trim(ary[2]);
+				var option = String.prototype.trim(ary[1]).toLowerCase();
+				var value = String.prototype.trim(ary[2]);
 				section.addOption(option, value);
 			}
 		}
@@ -306,7 +306,7 @@ function()
 ConfigFile.prototype._filterHash =
 function(filterSection)
 {
-	return $.trim(filterSection.type) + " " + filterSection.id;
+	return String.prototype.trim(filterSection.type) + " " + filterSection.id;
 }
 
 ConfigFile.prototype._serverHash =
@@ -337,19 +337,19 @@ function(type, name)
 	case "webui":
 	case "ftp":
 	case "irc":
-		return this._getOrCreateSection(type, name, $.trim(type));
+		return this._getOrCreateSection(type, name, String.prototype.trim(type));
 
 	case "tracker":
-		return this._getOrCreateSection(type, name, $.trim(type) + " " + $.trim(name));
+		return this._getOrCreateSection(type, name, String.prototype.trim(type) + " " + String.prototype.trim(name));
 
 	case "server":
-		return this._getOrCreateSection(type, name, this._serverHash($.trim(name)));
+		return this._getOrCreateSection(type, name, this._serverHash(String.prototype.trim(name)));
 
 	case "channel":
-		return this._getOrCreateSection(type, name, this._channelHash($.trim(name)));
+		return this._getOrCreateSection(type, name, this._channelHash(String.prototype.trim(name)));
 
 	default:
-		return this._getOrCreateSection(type, name, " unknown " + this.id++ + " " + $.trim(type) + " " + $.trim(name));
+		return this._getOrCreateSection(type, name, " unknown " + this.id++ + " " + String.prototype.trim(type) + " " + String.prototype.trim(name));
 	}
 }
 
